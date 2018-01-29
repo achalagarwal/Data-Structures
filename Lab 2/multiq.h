@@ -1,4 +1,4 @@
-#include"queue.c"
+#include"queue.h"
 struct taskid{
     long value;
 };

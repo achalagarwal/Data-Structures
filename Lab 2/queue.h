@@ -1,3 +1,5 @@
+#include<stdio.h>
+#include<stdlib.h>
 #include"bool.h"
 struct element{
     long value;

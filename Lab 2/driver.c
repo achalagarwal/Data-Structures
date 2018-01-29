@@ -1,4 +1,4 @@
-#include"multiq.c"
+#include"multiq.h"
 int main(){
     MultiQ mq = createMQ(5);
     Task t1 = (Task)malloc(sizeof(struct task));
@@ -57,5 +57,12 @@ int main(){
     mq = addMQ(mq,t5);
     mq = addMQ(mq,t6);
     mq = addMQ(mq,t7);
+    while(true){
+        Task t = delNextMQ(mq);
+        if(t==NULL)
+            break;
+        else
+            printf("%ld",t->tid->value);
+    }
     return 0;
 }
