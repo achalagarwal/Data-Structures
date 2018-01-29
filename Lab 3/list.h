@@ -8,4 +8,6 @@ struct list{
     int value;
 };
 typedef struct list* List;
+List createList(int N);
+List createCycle(List ls);
 

@@ -1,6 +1,7 @@
 #include"cycle.h"
 #include<stdlib.h>
 #include<stdio.h>
+#include<math.h>
 int HareTort(List ls){
     if(ls->head == NULL)
         return 0;
@@ -40,7 +41,13 @@ int LinkReversal(List ls){
         p = temp;
     }
 }
-
+int testCyclic(List ls){
+    int a = rand();
+    if(a %2 ==  0)
+        return LinkReversal(ls);
+    else
+        return HareTort(ls);
+}
 
 
         

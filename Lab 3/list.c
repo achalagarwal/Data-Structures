@@ -3,6 +3,7 @@
 List createList(int N){
     List ls = (List)malloc(sizeof(struct list));
     ls->head = NULL;
+//    N = 5;
     for(int i = 0;i<N;i++){
         int r = rand();
         Node n = (Node)malloc(sizeof(struct node));
@@ -21,13 +22,15 @@ List createList(int N){
     return ls;
 }
 List createCycle(List ls){
-    int a = rand()%2;
-    if(a == 0)
-        return ls;
-    else if(a == 1){
+    int r = rand();
+    if(r%10<5)
+      return ls;
+    else {
         Node c = ls->head;
         int flag = 0;
-        int r = rand();
+         r = rand();
+        
+       // int r = ls->head->next->next->value;
         Node pointer;
         while(c->next!=NULL){
             if(flag==0&&c->value == r){
