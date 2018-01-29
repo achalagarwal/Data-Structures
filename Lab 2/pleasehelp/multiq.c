@@ -41,7 +41,7 @@ Task delNextMQ(MultiQ mq){
         if(isEmptyQ(&mq->queues[i])==false){
             t->p->value = i+1;
             t->tid->value = front(&mq->queues[i])->value;
-            delQ(&mq->queues[i]);
+            delQ(mq->queues+i*sizeof(struct queue));
             return t;
         }
     }
