@@ -24,14 +24,32 @@ List createList(int N){
 }
 List createCycle(List ls){
     int r = rand();
-    if(r%10<5)
+    if(r%10>5)
       return ls;
     else {
+        int index = r%10+3;
+        int count = 1;
         Node c = ls->head;
+        Node p;
+        while(c->next!=NULL){
+            if(count == index){
+                p = c;
+            }
+            count+=1;
+            c = c->next;
+
+        }
+        c->next = p;
+    }
+
+        /*search for rand in the list
+        
+          Node c = ls->head;
         int flag = 0;
          r = rand();
         
        // int r = ls->head->next->next->value;
+          
         Node pointer;
         while(c->next!=NULL){
             if(flag==0&&c->value == r){
@@ -46,6 +64,8 @@ List createCycle(List ls){
             c->next = pointer;
         return ls;
     }
+    */
+
     return ls;
 }
 
