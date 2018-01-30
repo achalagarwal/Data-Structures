@@ -1,12 +1,13 @@
 #include"list.h"
+#include"memory.h"
 #include<stdlib.h>
 List createList(int N){
-    List ls = (List)malloc(sizeof(struct list));
+    List ls = (List)myalloc(sizeof(struct list));
     ls->head = NULL;
 //    N = 5;
     for(int i = 0;i<N;i++){
         int r = rand();
-        Node n = (Node)malloc(sizeof(struct node));
+        Node n = (Node)myalloc(sizeof(struct node));
         n->next = NULL;
         n->value = r;
         if(ls->head==NULL)
