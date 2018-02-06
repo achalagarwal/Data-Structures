@@ -1,6 +1,6 @@
 #include<stdio.h>
+#include"qsort.h"
 #include<stdlib.h>
-#include"card.h"
 #include"memory.h"
 void insertInOrder(Card c, Card array,int n){
         if(n==0)
@@ -88,7 +88,9 @@ int	j = 0;
 
 }
 }
+
 fclose(file);
+    quicksort(cards,0,counter-2);
 //return cards;
 	Card end = (Card)myalloc(sizeof(struct card));
 	end->card_number = -1;
