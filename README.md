@@ -1,2 +1,3 @@
 # Data-Structures
-Solved lab sheets
+Various abstract data types, implementations and usages.
+Implementations incorporate optimized algorithms on data structures for efficiency.
