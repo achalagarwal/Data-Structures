@@ -1,4 +1,4 @@
-
+#define DEFINITIONS
 struct node{
 	int key; //cgpa
 	char name[10];
