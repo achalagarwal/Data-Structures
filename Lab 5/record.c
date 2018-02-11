@@ -35,14 +35,14 @@ int record(FILE* f,int k){
 	}
 	return fileId;
 }	
-char* mergeFiles(char fn1[],char fn2[]){
+void  mergeFiles(FILE* f1, FILE* f2,int abc){
 	FILE* f;
-	FILE* f1;
-	FILE* f2;
-	f1 = fopen(fn1,"r");
-	f2 = fopen(fn2,"r");
-	char* nname;
-	sprintf(nname,"%s%d\0",fn2,99);
+	//FILE* f1;
+	//FILE* f2;
+	//f1 = fopen(fn1,"r");
+	//f2 = fopen(fn2,"r");
+	char nname[10];
+	sprintf(nname,"%s%d\0","t",abc);
 	f = fopen(nname,"w");
 	char name1[10];
 	char name2[10];
@@ -69,29 +69,37 @@ char* mergeFiles(char fn1[],char fn2[]){
 		fprintf(f,"%10s,%f\n",name2,key2);
 		b = fscanf(f2,"%10s,%f",&name2,&key2);
 	}
-	return nname;
+	fclose(f1);
+	fclose(f2);
+	fclose(f);
 }
 int main(){
 	FILE* f;
-	f = fopen("10240.txt","r");
+	f = fopen("111.txt","r");
 	int abc =record(f,100);
 	fclose(f);
 	printf("%d",abc);
 	FILE *f1;
 	FILE *f2;
-	int id = 3;
+	int id = 2;
 	char a[11]="temp0";
 	char b[11]= "temp1.txt";
 //	strcpy(&a,"temp0\0");
 //	strcpy(&b,"temp1.txt\0");
-//	f1 = fopen("temp0.txt","r");
-//	f2 = fopen("temp1.txt","r");
+	f1 = fopen("temp0","r");
+	f2 = fopen("temp1.txt","r");
 	FILE* g;
-	char* temp;	
-	temp = mergeFiles(a,b);
+	FILE* temp;
+	char xyz[5];
+	int iid = id;
+	mergeFiles(f1,f2,1);
+	g = fopen("t1","r");
 	while(id<abc){
 	sprintf(b,"temp%d.txt",id++);
-	temp = mergeFiles(temp,b);
+	temp = fopen(b,"r");
+	mergeFiles(temp,g,iid);
+	sprintf(xyz,"%s%d\0","t",iid++);
+	g = fopen(xyz,"r");
 	}
 	fclose(g);
 }
