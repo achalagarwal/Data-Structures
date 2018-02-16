@@ -18,12 +18,12 @@ Employee quickSortInternal(Employee emps,Stack s, int min){
 	Pair p = pop(s);
 	int end = p->end;
 	int start = p->start;
-	if(end-start>=min){
+    while(end - start>min){
 	int  mid = start+(end-start)/2;
+    int pos;
 	long long id1 = emps[start].empID;
 	long long id2 = emps[mid].empID;
 	long long id3 = emps[end].empID;
-	int pos;
 	if(id1>=id2){
 		if(id1>=id3){
 			if(id2>=id3){
@@ -50,7 +50,7 @@ Employee quickSortInternal(Employee emps,Stack s, int min){
 			pos = mid;
 		}
 	}
-	struct employee temp;
+    struct employee temp;
 	int i = start;
 	temp = emps[pos];
 	emps[pos]=emps[start];
@@ -72,10 +72,17 @@ Employee quickSortInternal(Employee emps,Stack s, int min){
 	temp = emps[start];
 	emps[start] = emps[wall-1];
 	emps[wall-1] = temp;
-	if(wall-start>1)
+	if(wall-start>2){
 		s = push(s,start,wall-2);
-	if(end-wall>0)
-		s=push(s,wall,end);
+        //printf("%d %d\n",start,wall-2);   
+    }
+	if(end-wall>0){
+        start = wall;
+        end = end;
+	//	s=push(s,wall,end);
+    }
+    else
+        end = start;
 	}
 }
 }
