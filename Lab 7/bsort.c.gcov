@@ -1,0 +1,32 @@
+        -:    0:Source:bsort.c
+        -:    0:Graph:bsort.gcno
+        -:    0:Data:bsort.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include"bsort.h"
+        -:    2:#ifndef LIST
+        -:    3:#include"list.h"
+        -:    4:#endif
+        -:    5:#include<stdlib.h>
+        1:    6:Bucket createBucket(){
+        1:    7:	Bucket b = (Bucket)malloc(sizeof(struct bucket));
+        -:    8://	b->lists = (List)malloc(sizeof(struct list)*9);
+        1:    9:	b->lists = createList();
+        1:   10:	return b;
+        -:   11:	}
+   200000:   12:void add(Bucket b, int a){
+   200000:   13:	int t = 10;
+   200000:   14:	int copy = a;
+  2000000:   15:	while(a>=t){
+  1600000:   16:		a/=10;
+        -:   17:	}
+   200000:   18:	push(&b->lists[a-1],copy);
+   200000:   19:	}
+   200001:   20:	Node rem(Bucket b){
+  1000431:   21:		for(int i = 0;i<9;i++){
+  1000430:   22:			if(b->lists[i].head!=NULL)
+   200000:   23:				return pop(&b->lists[i]);
+        -:   24:			}
+        1:   25:			return NULL;
+        -:   26:			}
+        -:   27:			
