@@ -1,3 +1,6 @@
+#ifndef BLOOMFILTER
+#include"filter.h"
+#endif
 struct hashOptions{
     int bits;
     //exclusive as 0 included
@@ -5,7 +8,4 @@ struct hashOptions{
 };
 typedef struct hashOptions* HO;
 int* hash(HO options,char* data,int size);
-
-#ifdef BLOOMFILTER
-    void hashIntoFilter(HO options, char* data,int size, BF filter);
-#endif
+void hashIntoFilter(HO options, char* data,int size, BF filter);
