@@ -14,13 +14,19 @@ BF createFilter(int size){
     return bf;
 }
 void increment(BF bf,int index){
-    if(index>=0 && index<bf->size)
+    if(index>=0 && index<bf->size){
         bf->filter[index]++;
+        if(bf->filter[index]==1)
+            bf->filled++;
+    }
 }
 void decrement(BF bf,int index){
     if(index>=0 && index<bf->size)
-        if(bf->filter[index]>0)
+        if(bf->filter[index]>0){
             bf->filter[index]--;
+            if(bf->filter[index]==0)
+                bf->filled--;
+        }
 }
 int getCount(BF bf, int index){
     if(index>=0 && index<bf->size)
@@ -30,12 +36,19 @@ int getCount(BF bf, int index){
 }
 void batchIncrement(BF bf,int* indices,int size){
     for(int i = 0;i<size;i++)
-        if(indices[i]>=0 && indices[i]<bf->size)
-            bf->filter[indices[i]]++;
+        increment(bf,indices[i]);
+
+    //    if(indices[i]>=0 && indices[i]<bf->size)
+      //      bf->filter[indices[i]]++;
 }
 void batchDecrement(BF bf, int* indices,int size){
     for(int i = 0;i<size;i++)
-        if(indices[i]>=0 && indices[i]<bf->size)
-            if(bf->filter[indices[i]]>0)
-                bf->filter[indices[i]]--;
+        decrement(bf,indices[i]);
+
+    //    if(indices[i]>=0 && indices[i]<bf->size)
+      //      if(bf->filter[indices[i]]>0)
+        //        bf->filter[indices[i]]--;
+}
+float getLoadFactor(BF bf){
+    return bf->filled*1.0/(bf->size*1.0);
 }
