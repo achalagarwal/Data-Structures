@@ -25,7 +25,7 @@ char* initialise(int size){
     for(int i = 0;i<size;i++)
         ch[i]= 'A';
     return ch;
-}/*
+}
 int recurse(char* data,int size, HO options,BF filter){
     int count=0;
     int a,i,j;
@@ -54,7 +54,6 @@ void testHast(BF filter,HO opts){
     char* data = initialize(min);
 
 }
-*/
 int main(){
     char* input = (char*)malloc(sizeof(char)*10);
   //  input = "achak";
