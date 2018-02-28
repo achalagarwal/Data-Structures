@@ -31,8 +31,13 @@ char* initialise(int size){
 int recurse(char* data,int size, HO options,BF filter){
     int count=0;
     int a,i,j;
+<<<<<<< HEAD
     while(size<=5){
 // count+= isMember(data,size,options,filter);
+=======
+    while(size<=4){
+ //count+= isMember(data,size,options,filter);
+>>>>>>> 6d79062d38d1c549ef84102c8ad0f084ea232daf
         hashIntoFilter(options,data,size,filter);
     for(i = size-1;i>=0;i--)
         if(data[i] != 'Z'){
@@ -52,7 +57,11 @@ int recurse(char* data,int size, HO options,BF filter){
 void test(HO opts,BF bf,int min, int max){
     char* data = initialise(min);
     printf("\n%d",recurse(data,min,opts,bf));
+<<<<<<< HEAD
      printArray(bf->filter,bf->size);
+=======
+    printArray(bf->filter,bf->size);
+>>>>>>> 6d79062d38d1c549ef84102c8ad0f084ea232daf
 }
 int main(){
     char* input = (char*)malloc(sizeof(char)*10);
@@ -63,6 +72,7 @@ int main(){
     input[3]='a';
     input[4]='l';
     input[5] = '\0';
+<<<<<<< HEAD
     BF bf = createFilter(100000000);
     HO opt = (HO)malloc(sizeof(struct hashOptions));
     opt->range = 100000000;
@@ -70,6 +80,15 @@ int main(){
     int size;
     int count = 0;
 /*    FILE* f = fopen("new.txt","r");
+=======
+    BF bf = createFilter(1000000);
+    HO opt = (HO)malloc(sizeof(struct hashOptions));
+    opt->range = 1000000;
+    opt->bits =10 ;
+    int size;
+    int count = 0;
+    FILE* f = fopen("new.txt","r");
+>>>>>>> 6d79062d38d1c549ef84102c8ad0f084ea232daf
     int a = fscanf(f,"%s",input);
    // printArray(data,opt->bits);
     while(a!=EOF){
@@ -81,9 +100,15 @@ int main(){
     a = fscanf(f,"%s",input);
     //printArray(data,opt->bits);
     }
+<<<<<<< HEAD
   *///  printf("%d\n",count);
    // printArray(bf->filter,bf->size);
     test(opt,bf,3,5);
     printf("%f",getLoadFactor(bf));
+=======
+    printf("%d\n",count);
+    printArray(bf->filter,bf->size);
+    test(opt,bf,3,5);
+>>>>>>> 6d79062d38d1c549ef84102c8ad0f084ea232daf
 };
 

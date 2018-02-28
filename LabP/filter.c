@@ -11,7 +11,10 @@ BF createFilter(int size){
     bf->filter = (int*)malloc(sizeof(int)*size);
     for(int i = 0;i<size;i++)
         bf->filter[i] = 0;
+<<<<<<< HEAD
     bf->filled = 0;
+=======
+>>>>>>> 6d79062d38d1c549ef84102c8ad0f084ea232daf
     return bf;
 }
 void increment(BF bf,int index){
