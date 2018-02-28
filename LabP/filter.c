@@ -11,6 +11,7 @@ BF createFilter(int size){
     bf->filter = (int*)malloc(sizeof(int)*size);
     for(int i = 0;i<size;i++)
         bf->filter[i] = 0;
+    bf->filled = 0;
     return bf;
 }
 void increment(BF bf,int index){
