@@ -31,8 +31,8 @@ char* initialise(int size){
 int recurse(char* data,int size, HO options,BF filter){
     int count=0;
     int a,i,j;
-    while(size<=4){
- //count+= isMember(data,size,options,filter);
+    while(size<=5){
+// count+= isMember(data,size,options,filter);
         hashIntoFilter(options,data,size,filter);
     for(i = size-1;i>=0;i--)
         if(data[i] != 'Z'){
@@ -52,7 +52,7 @@ int recurse(char* data,int size, HO options,BF filter){
 void test(HO opts,BF bf,int min, int max){
     char* data = initialise(min);
     printf("\n%d",recurse(data,min,opts,bf));
-    printArray(bf->filter,bf->size);
+     printArray(bf->filter,bf->size);
 }
 int main(){
     char* input = (char*)malloc(sizeof(char)*10);
@@ -63,13 +63,13 @@ int main(){
     input[3]='a';
     input[4]='l';
     input[5] = '\0';
-    BF bf = createFilter(1000000);
+    BF bf = createFilter(100000000);
     HO opt = (HO)malloc(sizeof(struct hashOptions));
-    opt->range = 1000000;
-    opt->bits =10 ;
+    opt->range = 100000000;
+    opt->bits =5 ;
     int size;
     int count = 0;
-    FILE* f = fopen("new.txt","r");
+/*    FILE* f = fopen("new.txt","r");
     int a = fscanf(f,"%s",input);
    // printArray(data,opt->bits);
     while(a!=EOF){
@@ -81,8 +81,9 @@ int main(){
     a = fscanf(f,"%s",input);
     //printArray(data,opt->bits);
     }
-    printf("%d\n",count);
-    printArray(bf->filter,bf->size);
+  *///  printf("%d\n",count);
+   // printArray(bf->filter,bf->size);
     test(opt,bf,3,5);
+    printf("%f",getLoadFactor(bf));
 };
 
