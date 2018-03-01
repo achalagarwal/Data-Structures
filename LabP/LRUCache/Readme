@@ -1,0 +1,7 @@
+ Need to change definition of Element in HashTable belonging to the Cache as this element also needs to store the corresponding node in the master doubly linked list else there is no synchronization between the two.
+
+ Finish implementation of LRUCache
+
+ Implement Find, Delete wherever needed. Example HashTable etc
+
+
