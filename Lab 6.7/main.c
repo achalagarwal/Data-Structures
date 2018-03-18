@@ -81,7 +81,7 @@ int main()
 	globalCounter = 0;
 
 	// Randomly generates student records=arraySize
-	int arraySize = 10000;
+	int arraySize = 10;
 	Student studArray = generateData(arraySize);
 
 	// measuring heap memory

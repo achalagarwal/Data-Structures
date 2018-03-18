@@ -82,6 +82,7 @@ List insertionSort(List list){
 		c = t;
         printf("%d\n",i++);
 	}
+    //myfree(list);
 	return new;
 }
 double measureSortingTime(List list){
