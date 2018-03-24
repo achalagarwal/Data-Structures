@@ -2,6 +2,7 @@
 #include<ctype.h>
 #include<stdio.h>
 #include<stdlib.h>
+#include"hash.h"
 
 int hash(char* str, int base, int size){
 	char ch = str[0];
@@ -68,12 +69,12 @@ char* clean(char* word){
 	return n;
 }
 
-struct array{
+/*struct array{
 	char** arr;
 	int size;
 };
 typedef struct array* Array;
-
+*/
 int unique(char* word, char** arr, int size){
     for(int i = 0;i<size;i++){
         if(strcmp(arr[i],word)==0){
