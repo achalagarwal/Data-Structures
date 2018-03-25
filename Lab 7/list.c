@@ -11,33 +11,46 @@ int areEqualElements(Element a, Element b){
 #include"list.h"
 #endif
 
-Node createList(Element e){
-    Node n = (Node)malloc(sizeof(struct node));
-    n -> e = e;
-    n -> next = NULL;
+List createList(){
+    List n = (List)malloc(sizeof(struct list));
+    n -> head = NULL;
+    n -> count = 0;
     return n;
 }
 
-Node addToList(Node n, Element e){
-    Node new = createList(e);
-    new -> next = n;
-    return new;
+List addToList(List l, Node n){
+    if(n==NULL)
+        return l;
+    n->next = l->head;
+    l->head = n;
+    l->count++;
+    return l;
 }
 
-Node deleteFromList(Node n, Element e){
-    Node copy = n;
-    Node prev = n;
-    if(areEqualElements(n -> e, e)==1)
-        return n->next;
-    n = n -> next;
+List addEToList(List l, Element e){
+    Node n = (Node)malloc(sizeof(struct node));
+    n -> e = e;
+    n -> next = NULL;
+    return addToList(l,n);
+}
+void deleteFromList(List l, Element e){
+    Node n = l->head;
+    Node prev= l->head;
+    if(areEqualElements(n -> e, e)==1){
+            l->head = n->next;
+            l->count--;
+            return;
+    }
+    n = n->next;
     while(n!=NULL){
         if(areEqualElements(n -> e, e)==1){
             prev -> next = n -> next;
-            return copy;
+            l->count--;
+            return;
         }
         prev = n;
         n = n -> next;
     }
-    return NULL;
+    return;
 }
 

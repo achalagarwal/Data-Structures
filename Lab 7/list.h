@@ -1,3 +1,4 @@
+#define LIST_H
 #ifndef ELEMENT
 #define ELEMENT
 #define ELEMENT_B
@@ -15,8 +16,17 @@ struct node{
     Node next;
 };
 
-Node addToList(Node n, Element e);
-Node deleteFromList(Node n, Element e);
-Node createList(Element e);
+struct list;
+typedef struct list* List;
+struct list{
+    Node head;
+    int count;
+};
+
+
+List addToList(List l, Node n);
+List addEToList(List l, Element e);
+void deleteFromList(List n, Element e);
+List createList();
 
 

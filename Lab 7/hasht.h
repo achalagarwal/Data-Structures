@@ -9,7 +9,7 @@ struct hashtable{
     int elementCount;
     int insertionCost;
     int queryingCost;
-    Node* heads;
+    List* heads;
 };
 
 HashTable createTable(int size);
