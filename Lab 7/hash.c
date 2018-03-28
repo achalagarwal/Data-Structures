@@ -114,7 +114,7 @@ Array parser(char* name){
 		}
 //		word = clean(word);
 		if(isValid(word)){
-            if(unique(word,strarr,count-1))
+//            if(unique(word,strarr,count-1))
 	    	    strcpy(strarr[count++],word);
         }
 		a = fscanf(f,"%s",word);
@@ -124,7 +124,7 @@ Array parser(char* name){
 	ret->size = count;
 	return ret;
 }
-int main(){
+int mains(){
 	char* ch = "aliceinwonderland.txt";
 	Array a = parser(ch);
 	int c = collisionCount(a->arr, a->size,1000003,1000003);
