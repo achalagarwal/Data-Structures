@@ -14,7 +14,7 @@ struct hashtable{
 
 HashTable createTable(int size);
 HashTable insertIntoTable(HashTable h, Element e);
-HashTable insertAllIntoTable(HashTable h, char** book, int words);
+int insertAllIntoTable(HashTable h, Element* book, int words);
 Element lookup(HashTable h, char* input);
 int lookupAll(HashTable h, char** input, int inputs, int m);
 
