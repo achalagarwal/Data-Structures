@@ -26,7 +26,7 @@ struct list{
 
 List addToList(List l, Node n);
 List addEToList(List l, Element e);
-void deleteFromList(List n, Element e);
+int deleteFromList(List n, Element e);
 List createList();
-
+int areEqualElements(Element a, Element b);
 
