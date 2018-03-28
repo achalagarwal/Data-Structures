@@ -31,26 +31,29 @@ List addEToList(List l, Element e){
     Node n = (Node)malloc(sizeof(struct node));
     n -> e = e;
     n -> next = NULL;
-    return addToList(l,n);
+   return addToList(l,n);
 }
-void deleteFromList(List l, Element e){
+
+//delete returns 1 if deleted else 0
+
+int deleteFromList(List l, Element e){
     Node n = l->head;
     Node prev= l->head;
     if(areEqualElements(n -> e, e)==1){
             l->head = n->next;
             l->count--;
-            return;
+            return 1;
     }
     n = n->next;
     while(n!=NULL){
         if(areEqualElements(n -> e, e)==1){
             prev -> next = n -> next;
             l->count--;
-            return;
+            return 1;
         }
         prev = n;
         n = n -> next;
     }
-    return;
+    return 0;
 }
 
