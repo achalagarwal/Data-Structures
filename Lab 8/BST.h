@@ -15,12 +15,12 @@ struct bst{
 Bst left;
 Bst right;
 Element e;
-int balance;
+int height;
 };
 
 Bst addB(Bst b, Element e);
 Bst create(Element e);
-void deleteB(Bst b, Element e);
+Bst deleteB(Bst b, Element e);
 Element find(Bst b, Element e);
 int getHeight(Bst b);
-
+void visualizeBst(Bst b);
