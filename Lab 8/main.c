@@ -30,11 +30,11 @@ int main(){
 	Bst b = create(e);
 	b = addElements(b);
 //	printf(getHeight(b));
-//	visualizeBst(b);
-   // for(int i = 0;i<1000;i++){
-//	b=deleteB(b, e);
-//	visualizeBst(b);
-    
+	visualizeBst(b);
+    for(int i = 0;i<1000;i++){
+	b=deleteB(b, e);
+    visualizeBst(b);
+    } 
   //  visualizeBst(b);
 	printf("done");
 }
