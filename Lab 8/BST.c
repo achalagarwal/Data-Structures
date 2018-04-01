@@ -28,10 +28,10 @@ void updateHeight(Bst b){
 //Assume that there are only two cases
 Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
     Bst a,c,b;
-    if(Z->e->value<=Y->e->value){
-        if(Z->e->value<=X->e->value){
+    if(Z->right==Y){
+      //  if(Z->e->value<=X->e->value){
             a = Z;
-    if(X->e->value<=Y->e->value){
+    if(Y->left == X){
         b = X;
         c = Y;
     }
@@ -39,12 +39,12 @@ Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
         b = Y;
         c = X;
     }
-        }
+        
     }
-    else if(Z->e->value>=Y->e->value){
-        if(Z->e->value>=X->e->value){
+    else{// if(Z->e->value>=Y->e->value){
+       // if(Z->e->value>=X->e->value){
             c = Z;
-    if(X->e->value<=Y->e->value){
+    if(Y->left == X){
         a = X;
         b = Y;
     }
@@ -53,7 +53,7 @@ Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
         b = X;
     }
         }
-    }
+
 
     if(Y==b){
         if(X==c){
