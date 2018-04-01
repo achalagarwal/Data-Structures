@@ -13,6 +13,18 @@ Bst create(Element e){
 	return b;
 }
 
+void updateHeight(Bst b){
+    if(b!=NULL){
+        int c = 0;
+        if(b -> left !=NULL){
+            c = b->left->height+1; 
+        }
+        if(b->right!=NULL){
+            c = b->right->height+1>c?b->right->height+1:c;
+        }
+        b -> height = c;
+    }
+}
 //Assume that there are only two cases
 Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
     Bst a,c,b;
@@ -47,17 +59,24 @@ Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
         if(X==c){
             Z->right = Y->left;
             Y->left = Z;
+            updateHeight(Z);
+            updateHeight(X);
+            updateHeight(Y);
         }
 
         else if(X==a){
             Z->left = Y->right;
             Y->right = Z;
+            updateHeight(Z);
+            updateHeight(X);
+            updateHeight(Y);
             //return;
         }if(pZ!=NULL){
             if(pZ->left == Z)
                 pZ->left = Y;
             else
                 pZ->right = Y;
+            updateHeight(pZ);
             return pZ;
     }
         return Y;
@@ -68,18 +87,25 @@ Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
             X->right = Y;
             Z->right = X->left;
             X->left = Z;
+            updateHeight(Z);
+            updateHeight(Y);
+            updateHeight(X);
         }
         else if(Y==a){
             Y->right = X->left;
             X->left = Y;
             Z->left = X->right;
             X->right = Z;
+            updateHeight(Z);
+            updateHeight(Y);
+            updateHeight(X);
         }
         if(pZ!=NULL){
         if(pZ->left == Z)
             pZ->left = X;
         else
             pZ->right = X;
+        updateHeight(pZ);
         return pZ;
         }
         return X;
@@ -92,11 +118,11 @@ int isImbalanced(Bst b){
     if(b->left==NULL)
         c = 0;
     else
-        c = b->left->height;
+        c = b->left->height+1;
     if(b->right ==NULL)
         d = 0;
     else
-        d = b->right ->height;
+        d = b->right ->height+1;
     if(((c-d)>1)||((d-c)>1)){
      //debug here
         printf("debug");
@@ -104,18 +130,6 @@ int isImbalanced(Bst b){
     }
     else
         return 0;
-}
-void updateHeight(Bst b){
-    if(b!=NULL){
-        int c = 0;
-        if(b -> left !=NULL){
-            c = b->left->height+1; 
-        }
-        if(b->right!=NULL){
-            c = b->right->height+1>c?b->right->height+1:c;
-        }
-        b -> height = c;
-    }
 }
 
 Bst batchUpdateHeight(Stack s){
@@ -186,6 +200,7 @@ Bst addB(Bst b, Element e){
 			if(c->right==NULL){
 				//c->height++;
 				c->right = create(e);
+                s = addToStack(s,c->right);
                b =  batchUpdateHeight(s);
 				return b;
 			}
@@ -198,6 +213,7 @@ Bst addB(Bst b, Element e){
 			c->height--;
 			if(c->left == NULL){
 				c->left = create(e);
+                s = addToStack(s,c->left);
                b =  batchUpdateHeight(s);
 				return b;
 			}
