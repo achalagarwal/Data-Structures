@@ -14,7 +14,7 @@ Element createElement(){
 	return e;
 }
 Bst addElements(Bst b){
-	for(int i = 1;i<100;i++){
+	for(int i = 1;i<10;i++){
 		b = addB(b, createElement());
         visualizeBst(b);
         printf("THE I VALUE IS %d",i);
