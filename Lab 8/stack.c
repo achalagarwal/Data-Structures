@@ -9,7 +9,7 @@ Stack createStack(){
 }
 
 Stack_Element getTop(Stack s){
-    if(s!=NULL)
+    if(s!=NULL&&s->head!=NULL)
         return s->head->e;
     else
         return NULL;
