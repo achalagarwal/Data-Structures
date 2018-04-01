@@ -96,9 +96,12 @@ int isImbalanced(Bst b){
     if(b->right ==NULL)
         d = 0;
     else
-        d = b->left ->height;
-    if((c-d>1)||(d-c>1))
+        d = b->right ->height;
+    if(((c-d)>1)||((d-c)>1)){
+     //debug here
+        printf("debug");
         return 1;
+    }
     else
         return 0;
 }
@@ -124,6 +127,8 @@ Bst batchUpdateHeight(Stack s){
         if(isImbalanced(b)){
             t3 = rotate(t1,t2,b,getTop(s));
         }
+        else
+            t3 = b;
         t1 = t2;
         t2 = b;
     }
@@ -136,7 +141,7 @@ Bst batchUpdateHeight(Stack s){
 
 void print(Bst b){
     if(b!=NULL)
-        printf("%d,",b->height);
+        printf("%d,",b->e->value);
     else
         printf("%d,",-1);
 }
@@ -177,11 +182,11 @@ Bst addB(Bst b, Element e){
 	while(c!=NULL){
         s = addToStack(s,c);
 		if(c->e->value < e->value){
-			c -> height++;
+			//c -> height++;
 			if(c->right==NULL){
 				//c->height++;
 				c->right = create(e);
-                batchUpdateHeight(s);
+               b =  batchUpdateHeight(s);
 				return b;
 			}
 			else{
@@ -193,7 +198,7 @@ Bst addB(Bst b, Element e){
 			c->height--;
 			if(c->left == NULL){
 				c->left = create(e);
-                batchUpdateHeight(s);
+               b =  batchUpdateHeight(s);
 				return b;
 			}
 			else{
