@@ -254,8 +254,8 @@ Bst extractPredecessor(Bst b){
 		    	p->right = b->left;
 		    }
         
-    
-        batchUpdateHeight(s);
+        s = addToStack(s,b->left);
+       batchUpdateHeight(s);
 		return b;
 	
 }
@@ -299,6 +299,7 @@ Bst deleteB(Bst b, Element e){
 						//p->right = extractPredecessor(c);
 						p->right = c->right;
 					}
+                 s = addToStack(s,c->right);
                 b =    batchUpdateHeight(s);
 					//found and deleted
 					return b;
@@ -320,15 +321,16 @@ Bst deleteB(Bst b, Element e){
 					p->left = c->left;
 				}
 				else{ //p->right == c	
-					p->right = c->right;
+					p->right = c->left;
 				}
+             s = addToStack(s,c->left);
              b =   batchUpdateHeight(s);
 				//found and deleted
 				return b;
 			}
 			else{ //neither == NULL
 				Bst i = extractPredecessor(c);
-                s = addToStack(s,i);
+               // s = addToStack(s,i);
 				//attach i to parent of c
 				if(p->left == c)
 					p->left = i;
@@ -337,6 +339,7 @@ Bst deleteB(Bst b, Element e){
 				i -> left = c->left;
 				i -> right = c -> right;
 				//found and deleted
+                s = addToStack(s,i);
                 b = batchUpdateHeight(s);
 				return b;
 			}
