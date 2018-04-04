@@ -78,10 +78,15 @@ void test(){
     Iterator i = identifyMoreNodes(n->root);
     addMoreNodesBFS(n->currentSet, i);
     while(isEmpty(n->currentSet)==0){
-        TNode t = selectNextNode
+        TNode t = selectNextNode(n);
+        if(t!=NULL)
+            addMoreNodesBFS(n->currentSet,identifyMoreNodes(t));
+        else    
+            removeElementFromFront(n->currentSet);
     }
 }
 int main(){
-	createSpecificTree(10);
-	printf("done");
+	//createSpecificTree(10);
+	test();
+    printf("done");
 }
