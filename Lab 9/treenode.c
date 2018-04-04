@@ -57,7 +57,7 @@ Tree createSpecificTree(int bound){
 TNode selectNextNode(Tree t){
     if(t==NULL)
         return NULL;
-    return getNextElement((getElementFront(t->currentSet)));
+    return getNextElement((Iterator)(getElementFront(t->currentSet)));
 }
 
 Iterator identifyMoreNodes(TNode n){
