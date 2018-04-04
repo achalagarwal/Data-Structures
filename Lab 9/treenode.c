@@ -22,6 +22,7 @@ Tree createTree(int children){
 	Tree t = (Tree)malloc(sizeof(struct tree));
 	TNode root  = createTNode(children);
 	t->root = root;
+    t->currentSet = createList();
 	return t;
 }
 
@@ -53,6 +54,33 @@ Tree createSpecificTree(int bound){
 	return t;
 }
 
+TNode selectNextNode(Tree t){
+    if(t==NULL)
+        return NULL;
+    return getNextElement((getElementFront(t->currentSet)));
+}
+
+Iterator identifyMoreNodes(TNode n){
+    return n->i;
+}
+
+
+void addMoreNodesBFS(List set,Iterator i){
+    addElementToBack(set,i);
+}
+
+void addMoreNodesDFS(List set, Iterator i){
+    addElementToFront(set,i);
+}
+
+void test(){
+    Tree n  = createSpecificTree(5);
+    Iterator i = identifyMoreNodes(n->root);
+    addMoreNodesBFS(n->currentSet, i);
+    while(isEmpty(n->currentSet)==0){
+        TNode t = selectNextNode
+    }
+}
 int main(){
 	createSpecificTree(10);
 	printf("done");
