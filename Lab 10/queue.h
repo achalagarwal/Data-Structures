@@ -28,7 +28,7 @@ struct queue{
 Q pushQ(Q q, QElement e);
 Q popQ(Q q);
 //List removeElementFromBack(List s);
-QElement getQ(Q q);
+QElement getQElement(Q q);
 //LElement getElementBack(List s);
 Q createQ();
 int isEmpty(Q q);
