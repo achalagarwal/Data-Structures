@@ -2,7 +2,10 @@
 //element for vertex
 
 struct vertex{
-	int index;
+	int row;
+    int col;
+    char* url;
+    int has:2;
 };
 
 typedef struct vertex* Vertex;
@@ -12,9 +15,9 @@ typedef Vertex QElement;
 #include"queue.h"
 
 struct graph{
-	Vertex* vertices;
+	Vertex** vertices;
 	int n;
-	int** adj;
+	int*** adj;
 };
 
 typedef struct graph* Graph;
@@ -30,4 +33,4 @@ Graph createGraph(int numV);
 Enumeration getAdjacent(Graph g, Vertex v);
 Graph addEdge(Graph G, Vertex v, Vertex a);
 int degree(Graph g, Vertex v);
-
+Vertex addVertex(Graph G,char* url);
