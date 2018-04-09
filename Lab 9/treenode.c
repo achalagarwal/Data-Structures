@@ -9,10 +9,10 @@
 TNode createTNode(int children){
 	TNode t = (TNode)malloc(sizeof(struct treenode));
 	t->i = createIterator(children);
+    t->r = (Record)malloc(sizeof(struct record));
     for(int i = 0;i<children;i++){
         t->i->elements[i] = createTNode(0);
     }
-	t->r = NULL;
 
 	return t;
 }
@@ -44,13 +44,15 @@ void helperCST(TNode t, int bound, int remLevels){
 	Iterator i = t->i;
 	while(hasMoreElements(i)==1){
 		TNode child = (TNode)getNextElement(i);
+        child->r->value = getRandom(99);
 		helperCST(child, bound, remLevels-1);
 	}
+    resetIterator(i);
 }
 
 Tree createSpecificTree(int bound){
 	Tree t = createTree(0);
-	helperCST(t->root,bound,5);
+	helperCST(t->root,bound,3);
 	return t;
 }
 
@@ -73,20 +75,36 @@ void addMoreNodesDFS(List set, Iterator i){
     addElementToFront(set,i);
 }
 
-void test(){
-    Tree n  = createSpecificTree(5);
+TNode bfsT(Tree n){
+ //   Tree n  = createSpecificTree(3);
+    if(isEmpty(n->currentSet)==1){
     Iterator i = identifyMoreNodes(n->root);
     addMoreNodesBFS(n->currentSet, i);
+    }
     while(isEmpty(n->currentSet)==0){
         TNode t = selectNextNode(n);
-        if(t!=NULL)
+        if(t!=NULL){
+
+            printf("%d  ",t->r->value);
             addMoreNodesBFS(n->currentSet,identifyMoreNodes(t));
-        else    
+            return t;
+        }
+        else{    
+            resetIterator(getElementFront(n->currentSet));
             removeElementFromFront(n->currentSet);
+            printf("\n");
+            fflush(NULL);
+        }
     }
+    return NULL;
 }
 int main(){
-	//createSpecificTree(10);
-	test();
+	Tree n = createSpecificTree(10);
+    TNode t;
+
+    do{
+        t = bfsT(n);//   printf("%d\n",t->r->value);
+    }
+	while(t!=NULL);
     printf("done");
 }
