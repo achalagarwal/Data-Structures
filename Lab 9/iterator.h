@@ -19,4 +19,4 @@ typedef struct iterator* Iterator;
 int hasMoreElements(Iterator it);
 Element getNextElement(Iterator it);
 Iterator createIterator(int size);
-
+void  resetIterator(Iterator i);
