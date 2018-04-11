@@ -14,8 +14,8 @@ struct bucket{
     //Alphabet alpha;
     Bucket* buckets;
     int stop:1;
+    char* prefix;
 };
-
 
 struct trie{
     Bucket root;
@@ -23,6 +23,15 @@ struct trie{
     int words;
 };
 typedef struct trie* Trie;
+
+struct array{
+    char** arr;
+    int size;
+};
+
+#define LIST_ELEMENT_H
+typedef Bucket LElement;
+#include"list.h"
 
 Trie createTrie(Alphabet a );
 Trie insertInTrie(Trie t, char* w);
