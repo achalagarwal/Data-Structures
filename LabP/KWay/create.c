@@ -28,13 +28,13 @@ void insert(int*arr,int value,int size){
 }
 
 void fill(FILE* f){
-    int s = getRandom(100000);
+    int s = getRandom(1000000);
     printf("Created File with %d elements\n",s);
     int* arr = (int*)malloc(sizeof(int)*s);
     int c =0;
     while(c<s){
     //    insert(arr,getRandom(100000),c++);
-        fprintf(f,"%d\n",getRandom(10000));
+        fprintf(f,"%d\n",getRandom(1000000000));
         c++;
     }/*
     for(int i = 0;i<s;i++){
@@ -63,5 +63,7 @@ void createFiles(){
 }
 
 int main(){
+    printf("******************\n");
     createFiles();
+    printf("******************\n");
 }
