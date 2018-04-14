@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include"create.h"
 int count =0;
 
 int getRandom(int bound){
@@ -28,7 +29,7 @@ void insert(int*arr,int value,int size){
 }
 
 void fill(FILE* f){
-    int s = getRandom(1000000);
+    int s = getRandom(10000000);
     printf("Created File with %d elements\n",s);
     int* arr = (int*)malloc(sizeof(int)*s);
     int c =0;
@@ -62,8 +63,9 @@ void createFiles(){
     return;
 }
 
-int main(){
+int create(){
     printf("******************\n");
     createFiles();
     printf("******************\n");
+    return 1;
 }
