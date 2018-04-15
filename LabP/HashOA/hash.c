@@ -66,9 +66,31 @@ int helperAddToHT(HT h, void* e, int hash){
     return 0;
 }
 
+int helperLookup(HT h, void* e,int hash){ 
+    if(h->marker[hash] == 0)
+        return -1;
+    if(h->marker[hash] == 1)
+        if(h->isEqual(h->table[hash],e)==1)
+            return hash;
+    //else probe
+    int attempts = h->size/20;
+    while(attempts-->0){
+        hash = probe(hash,(h->size/20) - attempts)%(h->size);
+        if(h->marker[hash] == 0)
+            return -1;
+        if(h->marker[hash] == 1)
+            if(h->isEqual(h->table[hash],e)==1)
+                return hash;
+    }
+    return -1;
+}
+
 int addToHT(HT h,void* e){
     int hash = h->hash(e,h->size);
-    return helperAddToHT(h, e, hash);
+    if(helperLookup(h,e,hash)==-1)
+        return helperAddToHT(h, e, hash);
+    else
+        return -1;
 }
 
 int helperDeleteFromHT(HT h,void* e, int hash){
@@ -106,24 +128,6 @@ int deleteFromHT(HT h, void* e){
 }
 
 
-int helperLookup(HT h, void* e,int hash){ 
-    if(h->marker[hash] == 0)
-        return -1;
-    if(h->marker[hash] == 1)
-        if(h->isEqual(h->table[hash],e)==1)
-            return hash;
-    //else probe
-    int attempts = h->size/20;
-    while(attempts-->0){
-        hash = probe(hash,(h->size/20) - attempts)%(h->size);
-        if(h->marker[hash] == 0)
-            return -1;
-        if(h->marker[hash] == 1)
-            if(h->isEqual(h->table[hash],e)==1)
-                return hash;
-    }
-    return -1;
-}
 
 
 //returns index as looking up the table
