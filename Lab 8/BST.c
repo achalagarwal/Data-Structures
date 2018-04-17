@@ -13,47 +13,60 @@ Bst create(Element e){
 	return b;
 }
 
+
+int getHeight(Bst a){
+    if(a==NULL)
+        return -1;
+    else
+        return a->height;
+}
 void updateHeight(Bst b){
     if(b!=NULL){
         int c = 0;
         if(b -> left !=NULL){
-            c = b->left->height+1; 
+            c = getHeight(b->left)+1; 
         }
         if(b->right!=NULL){
-            c = b->right->height+1>c?b->right->height+1:c;
+            c = getHeight(b->right)+1>c?getHeight(b->right)+1:c;
         }
         b -> height = c;
     }
 }
 //Assume that there are only two cases
-Bst rotate(Bst X, Bst Y, Bst Z, Bst pZ){
-    Bst a,c,b;
-    if(Z->right==Y){
-      //  if(Z->e->value<=X->e->value){
-            a = Z;
-    if(Y->left == X){
-        b = X;
-        c = Y;
-    }
-    else{
-        b = Y;
-        c = X;
-    }
-        
-    }
-    else{// if(Z->e->value>=Y->e->value){
-       // if(Z->e->value>=X->e->value){
-            c = Z;
-    if(Y->left == X){
-        a = X;
-        b = Y;
-    }
-    else{
-        a = Y;
-        b = X;
-    }
+Bst rotate(Bst Z, Bst pZ){
+    Bst a,c,b,Y,X;
+    if(getHeight(Z->left) >getHeight( Z->right)+1){
+        if(getHeight(Z->left->left) > getHeight(Z->left->right)){
+            c=Z;
+            Y = Z->left;
+            X = Z->left->left;
+            b = Z->left;
+            a = Z->left->left;
         }
-
+        else{
+            Y = Z->left;
+            X = Z->left->right;
+            c = Z;
+            b = Z->left->right;
+            a = Z->left;
+        }
+    }
+    else{
+        if(getHeight(Z->right->left)>getHeight(Z->right->right)){
+            a = Z;
+            b = Z->right->left;
+            c = Z->right;
+            Y = Z->right;
+            X = Z->right->left;
+        }
+        else{
+            a = Z;
+            b = Z->right;
+            c = Z->right->right;
+            Y = Z->right;
+            X = Z->right->right;
+        }
+    }
 
     if(Y==b){
         if(X==c){
@@ -139,7 +152,7 @@ Bst batchUpdateHeight(Stack s){
         updateHeight(b);
         s = deleteFromStack(s);
         if(isImbalanced(b)){
-            t3 = rotate(t1,t2,b,getTop(s));
+            t3 = rotate(b,getTop(s));
         }
         else
             t3 = b;
@@ -359,17 +372,6 @@ Bst deleteB(Bst b, Element e){
 	return b ;
 }
 
-int getHeight(Bst b){
-	int c = 0;
-	while(b!=NULL){
-		c++;
-		if(b->height>=0)
-			b=b->right;
-		else
-			b=b->left;
-	}
-	return c;
-}
 
 
 
