@@ -1,4 +1,10 @@
-#define HASH_H
+//
+//  hash.h
+//
+//
+//  Created by Achal Agarwal on 16/04/18.
+//
+#define hash_h
 
 struct hashtable{
     void** table;
@@ -15,4 +21,4 @@ HT createHT(int size,int (*f)(void*,int),int (*g)(void*,void*));
 int addToHT(HT ht, void* e);
 int deleteFromHT(HT ht, void* e);
 int lookup(HT ht,void* e);
-
+void* getHTElement(HT ht, int index);
