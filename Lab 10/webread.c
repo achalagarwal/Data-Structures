@@ -141,7 +141,7 @@ int main(void)
   fclose(webfile);
 
   FILE* web = fopen("mylocalfile","r");
-  printf("%d",parseHTML(web,"https://en.wikipedia.org/wiki/Main_Page\0"));
+  printf("%d\n",parseHTML(web,"https://en.wikipedia.org/wiki/Main_Page\0"));
   fclose(web);
 
   Graph G = createGraph(10);
