@@ -1,3 +1,10 @@
+//
+//  hash.c
+//
+//
+//  Created by Achal Agarwal on 16/04/18.
+//
+
 #include"hash.h"
 #include<stdlib.h>
 #include<stdio.h>
@@ -128,7 +135,16 @@ int deleteFromHT(HT h, void* e){
 }
 
 
-
+void* getHTElement(HT ht, int index){
+    if(ht==NULL)
+        return NULL;
+    if(index<0)
+        return NULL;
+    if(index>ht->size)
+        return NULL;
+    else
+        return ht->table[index];
+}
 
 //returns index as looking up the table
 int lookup(HT h, void* e){
