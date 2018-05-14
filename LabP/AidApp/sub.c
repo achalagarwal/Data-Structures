@@ -2,14 +2,14 @@
 #include<stdlib.h>
 
 int max =0;
-long product = 1;
+int product = 1;
 int sum = 0;
 int count = 0;
 int atMost(int arr[], int n){
     int lower =0;
     int upper = 0;
     while(upper<n){
-        if(arr[upper]+sum<200000 && arr[upper]*product<1000000000000){
+        if(arr[upper]+sum<2000 && arr[upper]*product<1000000){
         //    upper++;
             if(max<upper-lower){
             max = upper-lower;
