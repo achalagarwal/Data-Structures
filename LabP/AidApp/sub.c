@@ -10,7 +10,7 @@ int atMost(int arr[], int n){
     int upper = 0;
     while(upper<n){
         if(arr[upper]+sum<2000 && arr[upper]*product<1000000){
-        //    upper++;
+            upper++;
             if(max<upper-lower){
             max = upper-lower;
             count =1 ;
@@ -21,7 +21,7 @@ int atMost(int arr[], int n){
 
             product = arr[upper-1]*product;
             sum = arr[upper-1]+sum;
-            upper++;
+           // upper++;
         }
         else{
             sum-=arr[lower];
