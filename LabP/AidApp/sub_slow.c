@@ -9,6 +9,9 @@ int atMost(int* arr, int n){
     int temp =0;
     for(int i =0;i<n;i++){
         temp = 0;
+        //max = 0;
+        product = 1;
+        sum = 0;
         for(int j = i;j<n;j++){
            if(sum+arr[j]<2000 && arr[j]*product<1000000){
             sum+=arr[j];
@@ -16,19 +19,20 @@ int atMost(int* arr, int n){
             temp++;
            }
            else{
-                if(temp>max){
-                    max = temp;
-                    count = 1;
-                    pos = i;
-                }
-                else if(temp == max){
-                    count++;
-                }
-                break;
+               break;
+           }
+            if(temp>max){
+                max = temp;
+                count = 1;
+                pos = i;
+            }
+            else if(temp == max){
+                count++;
+            }
+             //   break;
            }
         }
     }
-}
 
 int main(){
     FILE* f = fopen("data.txt","r");
@@ -41,6 +45,8 @@ int main(){
         a = fscanf(f,"%d",&n);
         arr[i] = n;
     }
+   // for(int i = 0;i<size;i++)
+   //     printf("%d\n",arr[i]);
     atMost(arr,size);
     printf("%d, %d,%d",max,count,pos);
 }
